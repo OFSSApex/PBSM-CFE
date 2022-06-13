@@ -1,0 +1,770 @@
+{
+    "processId": null,
+    "messages": [],
+    "cashFlowEdits": null,
+    "executionRunId": null,
+    "cashFlowEditsSummaryDetails": null,
+    "cashFlowEditsIntializationValues": null,
+    "cashFlowEditsRulesList": [{
+            "ruleId": 1,
+            "ruleName": "Original Term > Amortization Term",
+            "conditionColumns": "AMRT_TYPE_CD#AMRT_TERM#AMRT_TERM_MULT#ORG_TERM#ORG_TERM_MULT",
+            "errorLevel": "Warning",
+            "description": "Amortization term can only be equal to zero on Non-Amortizing instruments",
+            "assignment": "ORG_TERM#ORG_TERM_MULT"
+        }, {
+            "ruleId": 2,
+            "ruleName": "Current Par Balance = Original Par Balance",
+            "conditionColumns": "ORIGINATION_DATE#AS_OF_DATE#CUR_PAR_BAL#ORG_PAR_BAL",
+            "errorLevel": "Warning",
+            "description": "Instrument has originated in past but Current Par Balance and Original Par Balance are equal",
+            "assignment": "NA"
+        }, {
+            "ruleId": 3,
+            "ruleName": "Deferred Current Balance = Deferred Original Balance",
+            "conditionColumns": "ORIGINATION_DATE#AS_OF_DATE#DEFERRED_CUR_BAL#DEFERRED_ORG_BAL",
+            "errorLevel": "Warning",
+            "description": "Instrument has originated in past but Deferred Current Balance and Deferred Original Balance are equal",
+            "assignment": "NA"
+        }, {
+            "ruleId": 6,
+            "ruleName": "Invalid Accrual Basis",
+            "conditionColumns": "ACCRUAL_BASIS_CD",
+            "errorLevel": "Warning",
+            "description": "Accrual basis code must be between 1 and 7 inclusively",
+            "assignment": "3"
+        }, {
+            "ruleId": 7,
+            "ruleName": "Invalid Amortization Type",
+            "conditionColumns": "AMRT_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Amortization type must be a valid OFSAA code",
+            "assignment": "700"
+        }, {
+            "ruleId": 8,
+            "ruleName": "Invalid Payment Pattern",
+            "conditionColumns": "AMRT_TYPE_CD#PMT_PATTERN_CD",
+            "errorLevel": "Warning",
+            "description": "Amortization type is Payment Pattern but Payment Pattern Code is invalid",
+            "assignment": "700"
+        }, {
+            "ruleId": 9,
+            "ruleName": "Invalid Payment Pattern",
+            "conditionColumns": "AMRT_TYPE_CD#PMT_PATTERN_CD#NA",
+            "errorLevel": "Warning",
+            "description": "Amortization type is Payment Pattern but Payment Pattern definition does not exist",
+            "assignment": "700"
+        }, {
+            "ruleId": 10,
+            "ruleName": "Invalid Behaviour Pattern",
+            "conditionColumns": "AMRT_TYPE_CD#BEHAVIOUR_PATTERN_CD",
+            "errorLevel": "Warning",
+            "description": "Amortization type is Behaviour Pattern but Behaviour Pattern Code is invalid",
+            "assignment": "700"
+        }, {
+            "ruleId": 11,
+            "ruleName": "Invalid Behaviour Pattern",
+            "conditionColumns": "AMRT_TYPE_CD#BEHAVIOUR_PATTERN_CD",
+            "errorLevel": "Warning",
+            "description": "Amortization type is Behaviour Pattern but Behaviour Pattern definition does not exist",
+            "assignment": "700"
+        }, {
+            "ruleId": 12,
+            "ruleName": "Invalid Payment schedule data",
+            "conditionColumns": "AMRT_TYPE_CD#ID_NUMBER#IDENTITY_CODE#INSTRUMENT_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Cannot find record with matching ID Number, Identity Code and Instrument Type Code in Payment Schedule table",
+            "assignment": "700"
+        }, {
+            "ruleId": 13,
+            "ruleName": "Invalid Payment schedule data",
+            "conditionColumns": "AMRT_TYPE_CD#ID_NUMBER#IDENTITY_CODE#INSTRUMENT_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Origination Date is greater than highest date in Payment Schedule",
+            "assignment": "700"
+        }, {
+            "ruleId": 14,
+            "ruleName": "Invalid Amortization Term Multiplier",
+            "conditionColumns": "AMRT_TERM_MULT",
+            "errorLevel": "Warning",
+            "description": "Amortization term multiplier must be D, M, or Y",
+            "assignment": "M"
+        }, {
+            "ruleId": 15,
+            "ruleName": "Invalid Negative Amortization Equalization Frequency Multiplier",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_EQ_MULT",
+            "errorLevel": "Warning",
+            "description": "Negative Amortization Equalization Frequency multiplier must be D, M, or Y",
+            "assignment": "M"
+        }, {
+            "ruleId": 16,
+            "ruleName": "Invalid Negative Amortization Limit",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_LIMIT",
+            "errorLevel": "Warning",
+            "description": "Negative Amortization limit value does not fall in a valid range (0 to 200), Applicable to Negative amortization instruments only",
+            "assignment": "0"
+        }, {
+            "ruleId": 17,
+            "ruleName": "Invalid Original Term Multiplier",
+            "conditionColumns": "ORG_TERM_MULT",
+            "errorLevel": "Warning",
+            "description": "Original term multiplier must be D, M, or Y",
+            "assignment": "M"
+        }, {
+            "ruleId": 18,
+            "ruleName": "Invalid Negative Amortization Payment Change Frequency",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_CHG_FREQ",
+            "errorLevel": "Warning",
+            "description": "Payment Change Frequency cannot be negative, Applicable to Negative amortization instruments only",
+            "assignment": "0"
+        }, {
+            "ruleId": 19,
+            "ruleName": "Invalid Negative Amortization Payment Change Frequency Multiplier",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_CHG_FREQ_MULT",
+            "errorLevel": "Warning",
+            "description": "Negative Amortization Payment Change Frequency Multiplier must be D, M, or Y",
+            "assignment": "M"
+        }, {
+            "ruleId": 20,
+            "ruleName": "Invalid Interest Payment Frequency Multiplier",
+            "conditionColumns": "INT_PMT_FREQ_MULT",
+            "errorLevel": "Warning",
+            "description": "Interest Payment frequency multiplier must be D, M, or Y",
+            "assignment": "M"
+        }, {
+            "ruleId": 21,
+            "ruleName": "Invalid Principal Payment Frequency Multiplier",
+            "conditionColumns": "PRIN_PMT_FREQ_MULT",
+            "errorLevel": "Warning",
+            "description": "Principal Payment frequency multiplier must be D, M, or Y",
+            "assignment": "M"
+        }, {
+            "ruleId": 22,
+            "ruleName": "Invalid Rate Change Rounding Code",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#RATE_CHG_RND_CD",
+            "errorLevel": "Warning",
+            "description": "Rate change round code must be between 0 and 4",
+            "assignment": "0"
+        }, {
+            "ruleId": 23,
+            "ruleName": "Invalid Rate Set Lag Multiplier",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#RATE_SET_LAG_MULT",
+            "errorLevel": "Warning",
+            "description": "Rate Set Lag Multiplier must be D, M, or Y",
+            "assignment": "M"
+        }, {
+            "ruleId": 24,
+            "ruleName": "Invalid Repricing Frequency Multiplier",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#REPRICE_FREQ_MULT",
+            "errorLevel": "Warning",
+            "description": "Repricing Frequency Multiplier must be D, M, or Y",
+            "assignment": "M"
+        }, {
+            "ruleId": 25,
+            "ruleName": "Invalid Rate Change Rounding Factor",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#RATE_CHG_RND_FAC",
+            "errorLevel": "Warning",
+            "description": "Rate change round factor must be between 0 and 1",
+            "assignment": "0"
+        }, {
+            "ruleId": 26,
+            "ruleName": "Maturity Date < Next Interest Payment Date",
+            "conditionColumns": "MATURITY_DATE#NEXT_INT_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Maturity date cannot be before the next interest payment date",
+            "assignment": "(CASE INT_PMT_FREQ_MULT WHEN 'Y' THEN ADD_MONTHS(NEXT_INT_PAYMENT_DATE, ((REMAIN_NO_PMTS -1)* INT_PMT_FREQ * 12)) WHEN 'M' THEN ADD_MONTHS(NEXT_INT_PAYMENT_DATE,  ((REMAIN_NO_PMTS -1)* INT_PMT_FREQ)) ELSE NEXT_INT_PAYMENT_DATE + ((REMAIN_NO_PMTS -1)* INT_PMT_FREQ) END)"
+        }, {
+            "ruleId": 27,
+            "ruleName": "Maturity Date < Next Principal Payment Date",
+            "conditionColumns": "MATURITY_DATE#NEXT_PRIN_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Maturity date cannot be before the next principal payment date",
+            "assignment": "(CASE PRIN_PMT_FREQ_MULT WHEN 'Y' THEN ADD_MONTHS(NEXT_PRIN_PAYMENT_DATE, ((REMAIN_NO_PMTS -1)* PRIN_PMT_FREQ * 12)) WHEN 'M' THEN ADD_MONTHS(NEXT_PRIN_PAYMENT_DATE, ((REMAIN_NO_PMTS -1)* PRIN_PMT_FREQ)) ELSE NEXT_PRIN_PAYMENT_DATE + ((REMAIN_NO_PMTS -1)* PRIN_PMT_FREQ) END)"
+        }, {
+            "ruleId": 28,
+            "ruleName": "Negative Amortization Equalization Frequency < 0",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_EQ_FREQ",
+            "errorLevel": "Warning",
+            "description": "Negative amortization equalization frequency cannot be negative, Applicable to Negative amortization instruments only",
+            "assignment": "0"
+        }, {
+            "ruleId": 29,
+            "ruleName": "Negative Amortization Equalization Date < Origination Date or As of Date",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_EQ_FREQ#NEG_AMRT_EQ_DATE#ORIGINATION_DATE#AS_OF_DATE",
+            "errorLevel": "Warning",
+            "description": "Negative Amortization equalization date is less than origination date (future origination) or less than the as-of-date (past origination), Applicable to Negative Amortization instruments only",
+            "assignment": "NEXT_REPRICE_DATE"
+        }, {
+            "ruleId": 30,
+            "ruleName": "Negative Amortization Equalization Date > Maturity Date",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_EQ_FREQ#NEG_AMRT_EQ_DATE#MATURITY_DATE",
+            "errorLevel": "Warning",
+            "description": "Negative Amortization equalization date is after Maturity Date, Applicable to Negative Amortization instruments only",
+            "assignment": "NEXT_REPRICE_DATE"
+        }, {
+            "ruleId": 31,
+            "ruleName": "Next Interest Payment Date < As of Date",
+            "conditionColumns": "AS_OF_DATE#ORIGINATION_DATE#AS_OF_DATE#NEXT_INT_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Next interest payment date is less than as-of-date (past origination case), As of Date can not be greater than the origination date and greater than the next payment date.",
+            "assignment": "AS_OF_DATE + 1"
+        }, {
+            "ruleId": 32,
+            "ruleName": "Next Principal Payment Date < As of Date",
+            "conditionColumns": "AS_OF_DATE#ORIGINATION_DATE#AS_OF_DATE#NEXT_PRIN_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Next principal payment date is less than as-of-date (past origination case), As of Date can not be greater than the origination date and greater than the next payment date.",
+            "assignment": "AS_OF_DATE + 1"
+        }, {
+            "ruleId": 33,
+            "ruleName": "Next Interest Payment Date < Origination Date",
+            "conditionColumns": "ORIGINATION_DATE#AS_OF_DATE#ORIGINATION_DATE#NEXT_INT_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Next interest payment date is less than origination date (future origination case)",
+            "assignment": "ORIGINATION_DATE + 1"
+        }, {
+            "ruleId": 34,
+            "ruleName": "Next Principal Payment Date < Origination Date",
+            "conditionColumns": "ORIGINATION_DATE#AS_OF_DATE#ORIGINATION_DATE#NEXT_PRIN_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Next principal payment date is less than origination date (future origination case)",
+            "assignment": "ORIGINATION_DATE + 1"
+        }, {
+            "ruleId": 35,
+            "ruleName": "Next Reprice Date < As of Date",
+            "conditionColumns": "ORIGINATION_DATE#AS_OF_DATE#NEXT_REPRICE_DATE#AS_OF_DATE#REPRICE_FREQ",
+            "errorLevel": "Warning",
+            "description": "Next repricing date is less than as-of-date (past origination case)",
+            "assignment": "(CASE REPRICE_FREQ_MULT WHEN 'Y' THEN ADD_MONTHS(AS_OF_DATE, REPRICE_FREQ*12) WHEN 'M' THEN ADD_MONTHS(AS_OF_DATE, REPRICE_FREQ) ELSE AS_OF_DATE + REPRICE_FREQ END)"
+        }, {
+            "ruleId": 36,
+            "ruleName": "Next Reprice Date < Origination Date",
+            "conditionColumns": "ORIGINATION_DATE#AS_OF_DATE#NEXT_REPRICE_DATE#ORIGINATION_DATE#REPRICE_FREQ",
+            "errorLevel": "Warning",
+            "description": "Next repricing date is less than the origination date (future origination case)",
+            "assignment": "(CASE REPRICE_FREQ_MULT WHEN 'Y' THEN ADD_MONTHS(ORIGINATION_DATE, REPRICE_FREQ*12) WHEN 'M' THEN ADD_MONTHS(ORIGINATION_DATE, REPRICE_FREQ) ELSE ORIGINATION_DATE + REPRICE_FREQ END)"
+        }, {
+            "ruleId": 37,
+            "ruleName": "Original Payment Amount = 0 and Negative Amortization Payment Decrease Limit (Life) <> 0",
+            "conditionColumns": "AMRT_TYPE_CD#ORG_PAYMENT_AMT#NEG_AMRT_PMT_DECR_LIFE",
+            "errorLevel": "Warning",
+            "description": "Payment decrease life is expressed as a percent of a original payment, Applicable to negative amortization instruments only",
+            "assignment": "0"
+        }, {
+            "ruleId": 38,
+            "ruleName": "Original Payment Amount = 0 and Negative Amortization Payment Increase Limit (Life) <> 0",
+            "conditionColumns": "AMRT_TYPE_CD#ORG_PAYMENT_AMT#NEG_AMRT_PMT_INCR_LIFE",
+            "errorLevel": "Warning",
+            "description": "Payment increase life is expressed as a percent of a original payment, Applicable to negative amortization instruments only",
+            "assignment": "0"
+        }, {
+            "ruleId": 39,
+            "ruleName": "Original Term <> Maturity Date - Orgination Date",
+            "conditionColumns": "ORG_TERM#ORG_TERM_MULT#ORIGINATION_DATE#MATURITY_DATE",
+            "errorLevel": "Warning",
+            "description": "Original term should equal the time between the origination date and the maturity date",
+            "assignment": "MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)#"
+        }, {
+            "ruleId": 40,
+            "ruleName": "Origination date < 01/01/1950",
+            "conditionColumns": "ORIGINATION_DATE",
+            "errorLevel": "Warning",
+            "description": "Origination date must be acceptable",
+            "assignment": "1-Jan-1950"
+        }, {
+            "ruleId": 41,
+            "ruleName": "Interest Payment Freq > Original Term",
+            "conditionColumns": "INT_PMT_FREQ#INT_PMT_FREQ_MULT#ORIGINATION_DATE#MATURITY_DATE",
+            "errorLevel": "Warning",
+            "description": "Interest Payment frequency cannot be greater than original term",
+            "assignment": "MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)#"
+        }, {
+            "ruleId": 42,
+            "ruleName": "Principal Payment Freq > Original Term",
+            "conditionColumns": "PRIN_PMT_FREQ#PRIN_PMT_FREQ_MULT#ORIGINATION_DATE#MATURITY_DATE",
+            "errorLevel": "Warning",
+            "description": "Principal Payment frequency cannot be greater than original term",
+            "assignment": "MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)#"
+        }, {
+            "ruleId": 43,
+            "ruleName": "Current Payment and Current Par Balance have opposite signs",
+            "conditionColumns": "CUR_PAYMENT#CUR_PAR_BAL",
+            "errorLevel": "Warning",
+            "description": "Current payment and current par balance can not have opposite signs",
+            "assignment": "0"
+        }, {
+            "ruleId": 44,
+            "ruleName": "Negative Amortization Payment Adjustment Date < As of Date",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_CHG_FREQ#AS_OF_DATE#NEG_AMRT_PMT_ADJUST_DATE",
+            "errorLevel": "Warning",
+            "description": "Negative Amortization Payment Adjustment Date is less than the as-of-date (past origination), Applicable to negative amortization instruments only",
+            "assignment": "NEXT_REPRICE_DATE"
+        }, {
+            "ruleId": 45,
+            "ruleName": "Negative Amortization Payment Adjustment Date < Origination Date",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_CHG_FREQ#AS_OF_DATE#NEG_AMRT_PMT_ADJUST_DATE#ORIGINATION_DATE",
+            "errorLevel": "Warning",
+            "description": "Negative Amortization Payment adjustment date is less than origination date (future origination), Applicable to negative amortization instruments only",
+            "assignment": "NEXT_REPRICE_DATE"
+        }, {
+            "ruleId": 46,
+            "ruleName": "Interest Payment Frequency <= 0",
+            "conditionColumns": "INT_PMT_FREQ#ORIGINATION_DATE#AS_OF_DATE#MATURITY_DATE#AS_OF_DATE",
+            "errorLevel": "Warning",
+            "description": "Interest Payment frequency is less than or equal to zero, and both maturity date and origination date are valid dates and can be used to calculate payment frequency.",
+            "assignment": "MATURITY_DATE#MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##"
+        }, {
+            "ruleId": 47,
+            "ruleName": "Principal Payment Frequency <= 0",
+            "conditionColumns": "PRIN_PMT_FREQ#ORIGINATION_DATE#AS_OF_DATE#MATURITY_DATE",
+            "errorLevel": "Warning",
+            "description": "Principal Payment frequency is less than or equal to zero, and both maturity date and origination date are valid dates and can be used to calculate payment frequency.",
+            "assignment": "MATURITY_DATE#MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##"
+        }, {
+            "ruleId": 48,
+            "ruleName": "Interest Payment Frequency <= 0",
+            "conditionColumns": "INT_PMT_FREQ#ORIGINATION_DATE#AS_OF_DATE#MATURITY_DATE#NEXT_INT_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Interest payment frequency is less than or equal to zero and maturity date is invalid, but next interest payment date can be used to calculate a valid payment frequency",
+            "assignment": "NEXT_INT_PAYMENT_DATE#MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##"
+        }, {
+            "ruleId": 49,
+            "ruleName": "Principal Payment Frequency <= 0",
+            "conditionColumns": "PRIN_PMT_FREQ#ORIGINATION_DATE#AS_OF_DATE#MATURITY_DATE#NEXT_PRIN_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Principal payment frequency is less than or equal to zero and maturity date is invalid, but next interest payment date can be used to calculate a valid payment frequency",
+            "assignment": "NEXT_PRIN_PAYMENT_DATE#MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##"
+        }, {
+            "ruleId": 50,
+            "ruleName": "Interest Payment Frequency <= 0",
+            "conditionColumns": "INT_PMT_FREQ#ORIGINATION_DATE#AS_OF_DATE#MATURITY_DATE#NEXT_INT_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Interest payment frequency is less than or equal to zero and all dates which can be used to calculate payment frequency are in the past",
+            "assignment": "AS_OF_DATE + 1#AS_OF_DATE + 1#MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##"
+        }, {
+            "ruleId": 51,
+            "ruleName": "Principal Payment Frequency <= 0",
+            "conditionColumns": "PRIN_PMT_FREQ#ORIGINATION_DATE#AS_OF_DATE#MATURITY_DATE#NEXT_PRIN_PAYMENT_DATE",
+            "errorLevel": "Warning",
+            "description": "Principal payment frequency is less than or equal to zero and all dates which can be used to calculate payment frequency are in the past",
+            "assignment": "AS_OF_DATE + 1#AS_OF_DATE + 1#MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##MONTHS_BETWEEN(MATURITY_DATE, ORIGINATION_DATE)##"
+        }, {
+            "ruleId": 52,
+            "ruleName": "Negative Amortization Payment Increase Limit (Cycle) < 0",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_INCR_CYCLE",
+            "errorLevel": "Warning",
+            "description": "Negative Amortization Payment increase limit (cycle) cannot be less than zero, Applicable to negative amortization instruments only",
+            "assignment": "0"
+        }, {
+            "ruleId": 55,
+            "ruleName": "Rate Change Minimum < 0",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#RATE_CHG_MIN",
+            "errorLevel": "Warning",
+            "description": "Minimum rate change can not be negative",
+            "assignment": "0"
+        }, {
+            "ruleId": 56,
+            "ruleName": "Rate Decrease Limit (Cycle) < 0",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#RATE_DECR_CYCLE",
+            "errorLevel": "Warning",
+            "description": "Rate decrease limit (cycle) must not be negative",
+            "assignment": "0"
+        }, {
+            "ruleId": 59,
+            "ruleName": "Rate Increase Limit (Cycle) < 0",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#RATE_INCR_CYCLE",
+            "errorLevel": "Warning",
+            "description": "Rate increase limit (cycle) can not be less than 0",
+            "assignment": "0"
+        }, {
+            "ruleId": 60,
+            "ruleName": "Remaining Number of Payments < 1",
+            "conditionColumns": "REMAIN_NO_PMTS",
+            "errorLevel": "Warning",
+            "description": "There has to be at least 1 payment left",
+            "assignment": "1"
+        }, {
+            "ruleId": 61,
+            "ruleName": "Rate Set Lag < 0",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#RATE_SET_LAG",
+            "errorLevel": "Warning",
+            "description": "Rate set lag cannot be negative",
+            "assignment": "0"
+        }, {
+            "ruleId": 66,
+            "ruleName": "Last Reprice Date > Next Reprice Date",
+            "conditionColumns": "REPRICE_FREQ#LAST_REPRICE_DATE#NEXT_REPRICE_DATE",
+            "errorLevel": "Warning",
+            "description": "Last repricing date is greater than next repricing date",
+            "assignment": "(CASE REPRICE_FREQ_MULT WHEN 'Y' THEN ADD_MONTHS(NEXT_REPRICE_DATE, -REPRICE_FREQ*12) WHEN 'M' THEN ADD_MONTHS(NEXT_REPRICE_DATE, -REPRICE_FREQ) ELSE NEXT_REPRICE_DATE - REPRICE_FREQ END)"
+        }, {
+            "ruleId": 67,
+            "ruleName": "Adjustable Rate instrument has invalid Interest Rate Code",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#INTEREST_RATE_CD",
+            "errorLevel": "Warning",
+            "description": "Interest rate code must be valid for adjustable rate instruments",
+            "assignment": "0"
+        }, {
+            "ruleId": 68,
+            "ruleName": "Invalid Interest Rate Code. Curve Type is not Interest Rate Curve",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#INTEREST_RATE_CD#VOLATILITY_CURVE_FLG",
+            "errorLevel": "Warning",
+            "description": "Interest rate code of instrument is not an yield curve. Repricing attributes will be ignored and processed as fixed interest rate;",
+            "assignment": "0"
+        }, {
+            "ruleId": 69,
+            "ruleName": "Invalid Net Margin Code",
+            "conditionColumns": "NET_MARGIN_CD",
+            "errorLevel": "Warning",
+            "description": "Valid net margin codes are 0 or 1.",
+            "assignment": "0"
+        }, {
+            "ruleId": 70,
+            "ruleName": "Negative Amortization Payment Decrease Limit (Cycle) = 0",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_DECR_CYCLE",
+            "errorLevel": "Warning",
+            "description": "Payment Decrease Limit (Cycle) cannot be less than zero. Applicable to negative amortization instruments only",
+            "assignment": "0"
+        }, {
+            "ruleId": 71,
+            "ruleName": "Negative Amortization Payment Decrease Limit (Life) = 0",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_DECR_LIFE",
+            "errorLevel": "Warning",
+            "description": "Payment Decrease Limit (Life) cannot be less than zero. Applicable to negative amortization instruments only",
+            "assignment": "0"
+        }, {
+            "ruleId": 73,
+            "ruleName": "Negative Amortization Payment Increase Limit (Life) = 0",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_INCR_LIFE",
+            "errorLevel": "Warning",
+            "description": "Payment Increase Limit (Life) cannot be less than zero. Applicable to negative amortization instruments only",
+            "assignment": "0"
+        }, {
+            "ruleId": 75,
+            "ruleName": "Issue Date > Origination Date",
+            "conditionColumns": "ISSUE_DATE#ORIGINATION_DATE",
+            "errorLevel": "Warning",
+            "description": "Issue date can not be greater than origination date",
+            "assignment": "ORIGINATION_DATE"
+        }, {
+            "ruleId": 76,
+            "ruleName": "Reprice Frequency < 0",
+            "conditionColumns": "REPRICE_FREQ",
+            "errorLevel": "Warning",
+            "description": "Repricing frequency must not be negative",
+            "assignment": "0"
+        }, {
+            "ruleId": 77,
+            "ruleName": "Amortization type is Rule of 78's but Reprice Frequency is not 0",
+            "conditionColumns": "AMRT_TYPE_CD#REPRICE_FREQ",
+            "errorLevel": "Warning",
+            "description": "Rule of 78's instruments are implicitly fixed rate.",
+            "assignment": "0"
+        }, {
+            "ruleId": 80,
+            "ruleName": "Balance on Last Reprice Date = 0",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#LRD_BALANCE",
+            "errorLevel": "Warning",
+            "description": "The balance as of the last repricing date cannot be equal to 0",
+            "assignment": "CUR_PAR_BAL"
+        }, {
+            "ruleId": 84,
+            "ruleName": "Amortization type is Rule of 78's but Adjustable Type is not fixed",
+            "conditionColumns": "AMRT_TYPE_CD#ADJUSTABLE_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Rule of 78's instrument should only have a Fixed adjustable type code.",
+            "assignment": "0"
+        }, {
+            "ruleId": 86,
+            "ruleName": "Last interest payment date > Next interest payment date",
+            "conditionColumns": "LAST_INT_PAYMENT_DATE#NEXT_INT_PAYMENT_DATE#INT_PMT_FREQ",
+            "errorLevel": "Warning",
+            "description": "Last interest payment date is greater than next interest payment date and can be calculated using interest payment frequency",
+            "assignment": "(CASE INT_PMT_FREQ_MULT WHEN 'Y' THEN ADD_MONTHS(NEXT_INT_PAYMENT_DATE, -INT_PMT_FREQ*12) WHEN 'M' THEN ADD_MONTHS(NEXT_INT_PAYMENT_DATE, -INT_PMT_FREQ) ELSE NEXT_INT_PAYMENT_DATE - INT_PMT_FREQ END)"
+        }, {
+            "ruleId": 87,
+            "ruleName": "Last interest payment date > Next interest payment date",
+            "conditionColumns": "LAST_INT_PAYMENT_DATE#NEXT_INT_PAYMENT_DATE#INT_PMT_FREQ",
+            "errorLevel": "Warning",
+            "description": "Last interest payment date is greater than next interest payment date, but cannot be calculated using interest payment frequency.",
+            "assignment": "ORIGINATION_DATE"
+        }, {
+            "ruleId": 88,
+            "ruleName": "Last principal payment date > Next principal payment date",
+            "conditionColumns": "LAST_PRIN_PAYMENT_DATE#NEXT_PRIN_PAYMENT_DATE#PRIN_PMT_FREQ",
+            "errorLevel": "Warning",
+            "description": "Last principal payment date is greater than next principal payment date and can be calculated using principal payment frequency",
+            "assignment": "(CASE PRIN_PMT_FREQ_MULT WHEN 'Y' THEN ADD_MONTHS(NEXT_PRIN_PAYMENT_DATE, -PRIN_PMT_FREQ*12) WHEN 'M' THEN  ADD_MONTHS(NEXT_PRIN_PAYMENT_DATE, -PRIN_PMT_FREQ) ELSE NEXT_PRIN_PAYMENT_DATE - PRIN_PMT_FREQ END)"
+        }, {
+            "ruleId": 89,
+            "ruleName": "Last principal payment date > Next principal payment date",
+            "conditionColumns": "LAST_PRIN_PAYMENT_DATE#NEXT_PRIN_PAYMENT_DATE#PRIN_PMT_FREQ",
+            "errorLevel": "Warning",
+            "description": "Last principal payment date is greater than next principal payment date, but cannot be calculated using principal payment frequency.",
+            "assignment": "ORIGINATION_DATE"
+        }, {
+            "ruleId": 90,
+            "ruleName": "Last Interest Payment Date < Origination Date",
+            "conditionColumns": "LAST_INT_PAYMENT_DATE#ORIGINATION_DATE",
+            "errorLevel": "Warning",
+            "description": "Last interest payment date cannot be less than the origination date",
+            "assignment": "ORIGINATION_DATE"
+        }, {
+            "ruleId": 91,
+            "ruleName": "Last Principal Payment Date < Origination Date",
+            "conditionColumns": "LAST_PRIN_PAYMENT_DATE#ORIGINATION_DATE",
+            "errorLevel": "Warning",
+            "description": "Last principal payment date cannot be less than the origination date",
+            "assignment": "ORIGINATION_DATE"
+        }, {
+            "ruleId": 92,
+            "ruleName": "Last interest payment date > As of Date",
+            "conditionColumns": "LAST_INT_PAYMENT_DATE#AS_OF_DATE#ORIGINATION_DATE#AS_OF_DATE",
+            "errorLevel": "Warning",
+            "description": "Last interest payment date cannot be greater than the as-of-date if the instrument originated in the past.",
+            "assignment": "AS_OF_DATE"
+        }, {
+            "ruleId": 93,
+            "ruleName": "Last principal payment date > As of Date",
+            "conditionColumns": "LAST_PRIN_PAYMENT_DATE#AS_OF_DATE#ORIGINATION_DATE#AS_OF_DATE",
+            "errorLevel": "Warning",
+            "description": "Last principal payment date cannot be greater than the as-of-date if the instrument originated in the past.",
+            "assignment": "AS_OF_DATE"
+        }, {
+            "ruleId": 94,
+            "ruleName": "Amortization Type is conventional but interest timing is Advance",
+            "conditionColumns": "INTEREST_TIMING_TYPE_CD#AMRT_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Interest type can only be arrears for conventionally amortizing instruments.",
+            "assignment": "1"
+        }, {
+            "ruleId": 95,
+            "ruleName": "Invalid interest timing type",
+            "conditionColumns": "INTEREST_TIMING_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Interest type must be a valid OFSAA code.",
+            "assignment": "1"
+        }, {
+            "ruleId": 96,
+            "ruleName": "Invalid Compounding Basis Code",
+            "conditionColumns": "COMPOUND_BASIS_CD",
+            "errorLevel": "Warning",
+            "description": "Compounding basis code must be a valid OFSAA code",
+            "assignment": "160"
+        }, {
+            "ruleId": 97,
+            "ruleName": "Amortization Type / Accrual Basis Error",
+            "conditionColumns": "ACCRUAL_BASIS_CD#INT_PMT_FREQ_MULT#AMRT_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Accrual basis code cannot have a 30 day month assumption on instruments with payment frequency multiplier in days or defined by a payment schedule",
+            "assignment": "3"
+        }, {
+            "ruleId": 99,
+            "ruleName": "Behaviour Type Code is Null",
+            "conditionColumns": "AMRT_TYPE_CD#BEHAVIOUR_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Behaviour Type Code is Null, defaulted to 1 (Non-Maturity)",
+            "assignment": "1"
+        }, {
+            "ruleId": 100,
+            "ruleName": "Invalid Behaviour Type Code",
+            "conditionColumns": "AMRT_TYPE_CD#BEHAVIOUR_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Behaviour Type Code is invalid, defaulted to 1 (Non-Maturity)",
+            "assignment": "1"
+        }, {
+            "ruleId": 101,
+            "ruleName": "Invalid Behavior Sub Type Code",
+            "conditionColumns": "AMRT_TYPE_CD#BEHAVIOUR_TYPE_CD#BEHAVIOUR_SUB_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Behaviour Sub Type should be 201 or 202 or 203 when Behaviour Type is Non-Performing",
+            "assignment": "201"
+        }, {
+            "ruleId": 102,
+            "ruleName": "Invalid Behavior Sub Type Code",
+            "conditionColumns": "AMRT_TYPE_CD#BEHAVIOUR_TYPE_CD#BEHAVIOUR_SUB_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Behaviour Sub Type should be 305 or 306 when Behaviour Type is Devolvement and Recovery",
+            "assignment": "305"
+        }, {
+            "ruleId": 103,
+            "ruleName": "Invalid Residual Amount for Lease instrument",
+            "conditionColumns": "AMRT_TYPE_CD#RESIDUAL_AMOUNT",
+            "errorLevel": "Warning",
+            "description": "Residual Amount cannot be less than 0 for Lease instrument",
+            "assignment": "0"
+        }, {
+            "ruleId": 104,
+            "ruleName": "Invalid Residual Amount for Lease instrument",
+            "conditionColumns": "AMRT_TYPE_CD#RESIDUAL_AMOUNT#CUR_PAR_BAL",
+            "errorLevel": "Warning",
+            "description": "Residual Amount cannot be higher than Current Par Balance for Lease instrument",
+            "assignment": "0"
+        }, {
+            "ruleId": 105,
+            "ruleName": "Invalid Adjustable Type for Annuity with Maturity Amount",
+            "conditionColumns": "AMRT_TYPE_CD#MATURITY_AMOUNT#ADJUSTABLE_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Annuity instrument with maturity amount must have fixed interest rate",
+            "assignment": "0"
+        }, {
+            "ruleId": 106,
+            "ruleName": "Invalid offset percent",
+            "conditionColumns": "MOA_EXPECTED_BAL#MOA_OFFSET_PERCENT",
+            "errorLevel": "Warning",
+            "description": "Expected balance is greater than 0 but offset percentage is less than 0",
+            "assignment": "0"
+        }, {
+            "ruleId": 108,
+            "ruleName": "Invalid reprice pattern code",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#REPRICE_PATTERN_CD",
+            "errorLevel": "Warning",
+            "description": "Invalid reprice pattern code given for instrument",
+            "assignment": "0"
+        }, {
+            "ruleId": 109,
+            "ruleName": "Invalid reprice pattern code",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#REPRICE_PATTERN_CD",
+            "errorLevel": "Warning",
+            "description": "Invalid reprice pattern code given for instrument",
+            "assignment": "0"
+        }, {
+            "ruleId": 110,
+            "ruleName": "Invalid Original Payment Amount",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#ORG_PAYMENT_AMT",
+            "errorLevel": "Warning",
+            "description": "Original payment amount is required for fixed-rate instruments",
+            "assignment": "CUR_PAYMENT"
+        }, {
+            "ruleId": 111,
+            "ruleName": "Invalid Percent Sold",
+            "conditionColumns": "PERCENT_SOLD",
+            "errorLevel": "Warning",
+            "description": "Percent Sold must be greater than or equal to zero and less than 100",
+            "assignment": "0"
+        }, {
+            "ruleId": 112,
+            "ruleName": "Current Par Balance = 0",
+            "conditionColumns": "CUR_PAR_BAL",
+            "errorLevel": "Warning",
+            "description": "Instruments with Current Par Balance zero are not processed.",
+            "assignment": "NA"
+        }, {
+            "ruleId": 113,
+            "ruleName": "Invalid embedded options flag",
+            "conditionColumns": "EMBEDDED_OPTIONS_FLG#AMRT_TYPE_CD",
+            "errorLevel": "Warning",
+            "description": "Embedded option is supported only for non-amortizing instrument",
+            "assignment": "0"
+        }, {
+            "ruleId": 4,
+            "ruleName": "Current Gross Rate < 0",
+            "conditionColumns": "CUR_GROSS_RATE",
+            "errorLevel": "Info",
+            "description": "Current gross rate is negative",
+            "assignment": "NA"
+        }, {
+            "ruleId": 5,
+            "ruleName": "Current Net Rate < 0",
+            "conditionColumns": "CUR_NET_RATE",
+            "errorLevel": "Info",
+            "description": "Current net rate is negative",
+            "assignment": "NA"
+        }, {
+            "ruleId": 54,
+            "ruleName": "Rate Cap Life < Current Net Interest Rate",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#RATE_CAP_LIFE#CUR_NET_RATE",
+            "errorLevel": "Info",
+            "description": "Current net rate is greater than the rate cap",
+            "assignment": "NA"
+        }, {
+            "ruleId": 58,
+            "ruleName": "Rate Floor Life > Currrent Net Interest Rate",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#RATE_FLOOR_LIFE#CUR_NET_RATE",
+            "errorLevel": "Info",
+            "description": "Rate floor life must not be greater than the current net rate",
+            "assignment": "NA"
+        }, {
+            "ruleId": 64,
+            "ruleName": "Orginal Par Balance < Current Par Balance",
+            "conditionColumns": "AMRT_TYPE_CD#ORG_PAR_BAL#CUR_PAR_BAL",
+            "errorLevel": "Info",
+            "description": "Original balance on Rule of 78's instruments should be greater than current balance",
+            "assignment": "NA"
+        }, {
+            "ruleId": 65,
+            "ruleName": "Adjustable Negative Amortization instrument has Reprice Frequency = 0",
+            "conditionColumns": "AMRT_TYPE_CD#REPRICE_FREQ",
+            "errorLevel": "Info",
+            "description": "Reprice Frequency cannot be zero for Adjustable Negative Amortization instrument",
+            "assignment": "NA"
+        }, {
+            "ruleId": 72,
+            "ruleName": "Current Payment is less than Life Pay Floor",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_DECR_LIFE#CUR_PAYMENT#ORG_PAYMENT_AMT#NEG_AMRT_PMT_DECR_LIFE",
+            "errorLevel": "Info",
+            "description": "Current payment is less than the minimum payment amount. Applicable to negative amortization instruments only",
+            "assignment": "NA"
+        }, {
+            "ruleId": 74,
+            "ruleName": "Current Payment is greater than Life Pay Cap",
+            "conditionColumns": "AMRT_TYPE_CD#NEG_AMRT_PMT_INCR_LIFE#CUR_PAYMENT#ORG_PAYMENT_AMT#NEG_AMRT_PMT_INCR_LIFE",
+            "errorLevel": "Info",
+            "description": "Current payment is greater than the maximum payment amount. Applicable to negative amortization instruments only",
+            "assignment": "NA"
+        }, {
+            "ruleId": 78,
+            "ruleName": "Original Par Balance is 0 for a fixed rate instrument",
+            "conditionColumns": "ORG_PAR_BAL#REPRICE_FREQ",
+            "errorLevel": "Info",
+            "description": "For transfer pricing of fixed rate instruments, the original balance should be populated.",
+            "assignment": "NA"
+        }, {
+            "ruleId": 81,
+            "ruleName": "Last Reprice Date < Issue/Origination Date",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#LAST_REPRICE_DATE#ISSUE_DATE#LAST_REPRICE_DATE#ORIGINATION_DATE",
+            "errorLevel": "Info",
+            "description": "Transfer pricing will not occur when the last repricing date is less than the issue date and origination date",
+            "assignment": "ORIGINATION_DATE"
+        }, {
+            "ruleId": 82,
+            "ruleName": "Reprice Frequency > 0 for fixed rate instrument",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#REPRICE_FREQ",
+            "errorLevel": "Info",
+            "description": "Repricing frequency and adjustable type code are inconsistent",
+            "assignment": "0"
+        }, {
+            "ruleId": 83,
+            "ruleName": "Adjustable Type is not fixed but Reprice Frequency is 0",
+            "conditionColumns": "ADJUSTABLE_TYPE_CD#REPRICE_FREQ",
+            "errorLevel": "Info",
+            "description": "Repricing frequency and adjustable type code are inconsistent",
+            "assignment": "NA"
+        }, {
+            "ruleId": 85,
+            "ruleName": "Adjustable Type is fixed rate for Negative amortization instrument",
+            "conditionColumns": "AMRT_TYPE_CD#ADJUSTABLE_TYPE_CD",
+            "errorLevel": "Info",
+            "description": "Negative amortization instruments cannot have fixed adjustable type code",
+            "assignment": "100"
+        }, {
+            "ruleId": 98,
+            "ruleName": "Holiday calendar not given for B/252 accrual basis",
+            "conditionColumns": "ACCRUAL_BASIS_CD#HOLIDAY_CALENDAR_CODE#HOLIDAY_CALC_OPTION_CD#HOLIDAY_ROLLING_CONVENTION_CD#HOLIDAY_CALC_OPTION_CD",
+            "errorLevel": "Info",
+            "description": "Holiday calendar must be give when using Business/252 accrual basis",
+            "assignment": "NA"
+        }, {
+            "ruleId": 107,
+            "ruleName": "Calculated Offset Balance > Current Par Balance",
+            "conditionColumns": "MOA_EXPECTED_BAL#MOA_OFFSET_PERCENT#CUR_PAR_BAL",
+            "errorLevel": "Info",
+            "description": "Calculated Offset Balance is higher than Current Par Balance",
+            "assignment": "NA"
+        }
+    ],
+    "cashFlowEditsSubgroupOptions": null,
+    "cashFlowEditsExecutionDetails": null,
+    "dropDownOptions": null,
+    "nameAlreadyExists": false
+}
